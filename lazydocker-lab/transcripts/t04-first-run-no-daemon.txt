@@ -1,0 +1,62 @@
+$ HOME=$PWD/home-nodaemon ./lazydocker          (no DOCKER_HOST set, no daemon anywhere)
+The full interface opens anyway. Every list is empty, and an error popup
+explains why, with a retry counter that keeps climbing while it waits:
+
+╭─[3]─Containers──────────────────────────────╮╭────�
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+╭─[4]─Images──────────────────────────────────╮│      
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                  ╭─Error────────────────────────────
+│                                  │Docker event stream returned error: Cannot connect to the Docker     │                    
+╰──────────────────────────────────│daemon at unix:///var/ru
+╭─[5]─Volumes──────────────────────│Retry count: 2                              
+│                                  ╰──────────────────────────────�
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+╭─[6]─Networks────────────────────────────────╮│          
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+n/esc: no, y/enter: yes                                                                                                       Donate
+
+The popup text, verbatim:
+  Docker event stream returned error: Cannot connect to the Docker daemon
+  at unix:///var/run/docker.sock. Is the docker daemon running?
+  Retry count: 2
+
+Quitting is a two-key affair: q asks first (the bottom line reads
+"n/esc: no, y/enter: yes"), y confirms. Exit status 0.
+
+$ find home-nodaemon -type f          (what the first run created)
+home-nodaemon/.config/lazydocker/config.yml
+
+$ wc -l home-nodaemon/.config/lazydocker/config.yml
+0 home-nodaemon/.config/lazydocker/config.yml      (created empty: all defaults)

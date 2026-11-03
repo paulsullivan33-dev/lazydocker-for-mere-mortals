@@ -1,0 +1,27 @@
+$ which docker dockerd
+/usr/bin/docker
+/usr/bin/dockerd
+
+$ docker info        (client answers; the server section refuses)
+Client:
+ Version:    29.1.3
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.6.0
+    Path:     /home/hatch/.docker/cli-plugins/docker-compose
+  trust: Manage trust on Docker images (Docker Inc.)
+    Version:  29.1.3
+    Path:     /usr/libexec/docker/cli-plugins/docker-trust
+
+Server:
+failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory
+
+$ docker ps
+failed to connect to the docker API at unix:///var/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /var/run/docker.sock: connect: no such file or directory
+exit=1
+
+$ timeout 12 dockerd --data-root=$PWD/dockerd-data --host=unix://$PWD/docker.sock   (one bounded attempt to start a daemon)
+failed to start daemon: Error initializing network controller: error obtaining controller instance: failed to register "bridge" driver: failed to create NAT chain DOCKER: iptables failed: iptables --wait -t nat -N DOCKER: iptables v1.8.10 (nf_tables): Could not fetch rule set generation id: Permission denied (you must be root)
+exit=1

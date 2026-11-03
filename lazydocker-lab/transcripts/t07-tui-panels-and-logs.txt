@@ -1,0 +1,85 @@
+$ cd harbour    (a folder holding an invented docker-compose.yml)
+$ HOME=$PWD/../home-stub DOCKER_HOST=tcp://127.0.0.1:18086 ../lazydocker
+
+The opening screen. The Containers panel lists the fixture fleet with
+state, name, live CPU% (from the stats stream) and published ports; the
+main panel already shows the selected container (cache-box) logs:
+
+╭─[3]─Containers──────────────────────────────╮╭─Logs - Stat
+│running     cache-box      25.00%            ││2025-11-03T09:00:01Z cache-box: fixture process started                       
+│running     hello-web      25.00% 8080->80/tc││2025-11-03T09:00:02Z cache-box: ready to serve                                
+│running     scratch-db     25.00%            ││2025-11-03T09:12:44Z cache-box: handled request 200                           
+│exited  (0) nightly-backup 25.00%            ││2025-11-03T09:31:07Z cache-box: handled request 200                           
+│                                             ││2025-11-03T10:02:19Z cache-box: checkpoint written                            
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+╭─[4]─Images──────────────────────────────────╮│      
+│example/backup-tool 2.0    58.00MB           ││                                                                              
+│example/cache       7      31.00MB           ││                                                                              
+│example/hello-web   1.4    142.00MB          ││                                                                              
+│example/scratch-db  16     388.00MB          ││                                                                              
+│<none>              <none> 12.00MB           ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+╭─[5]─Volumes─────────────────────────────────╮│        
+│local backup-store                           ││                                                                              
+│local db-data                                ││                                                                              
+│local web-content                            ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+╭─[6]─Networks────────────────────────────────╮│          
+│bridge bridge                                ││                                                                              
+│bridge harbour_default                       ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+PgUp/PgDn: scroll, b: view bulk commands, q: quit, x: menu, ← → ↑ ↓: navigate                                               
+
+Focusing the Images panel and selecting the first image shows its
+details and layer history in the main panel:
+
+╭─[3]─Containers──────────────────────────────╮╭─Config─�
+│running     cache-box      25.00%            ││Name:     example/backup-tool                                                 
+│running     hello-web      25.00% 8080->80/tc││ID:       sha256:4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4
+│running     scratch-db     25.00%            ││Tags:     example/backup-tool:2.0                                             
+│exited  (0) nightly-backup 25.00%            ││Size:     58.00MB                                                             
+│                                             ││Created:  Thu, 23 Oct 2025 00:00:00 UTC                                       
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││ID         TAG                   SIZE     COMMAND                             
+│                                             ││1a1a1a1a1a example/hello-web:1.4 0B       ENTRYPOINT ["/start.sh"]            
+╰───────────────────────────────────────────
+╭─[4]─Images──────────────────────────────────╮│<missi
+│example/backup-tool 2.0    58.00MB           ││                                                                              
+│example/cache       7      31.00MB           ││                                                                              
+│example/hello-web   1.4    142.00MB          ││                                                                              
+│example/scratch-db  16     388.00MB          ││                                                                              
+│<none>              <none> 12.00MB           ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+╭─[5]─Volumes─────────────────────────────────╮│        
+│local backup-store                           ││                                                                              
+│local db-data                                ││                                                                              
+│local web-content                            ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              

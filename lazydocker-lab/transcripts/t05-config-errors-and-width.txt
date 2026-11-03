@@ -1,0 +1,31 @@
+A config file with a YAML syntax error -- lazydocker refuses to start:
+
+$ cat home-broken/.config/lazydocker/config.yml
+gui:
+  sidePanelWidth: [unclosed
+
+$ HOME=$PWD/home-broken ./lazydocker
+2026/11/03 02:18:51 yaml: line 2: did not find expected ',' or ']'
+exit=1
+
+A config value of the wrong type -- same refusal, different words:
+
+$ cat home-badtype/.config/lazydocker/config.yml
+gui:
+  sidePanelWidth: "wide please"
+
+$ HOME=$PWD/home-badtype ./lazydocker
+2026/11/03 02:18:51 yaml: unmarshal errors:
+  line 2: cannot unmarshal !!str `wide pl...` into float64
+exit=1
+
+A valid custom value IS honoured. With sidePanelWidth: 0.5 the left
+column takes half the 140-column screen instead of a third:
+
+default 0.3333:
+╭─[3]─Containers──────────────────────────
+│                                             ││                                              
+
+custom 0.5:
+╭─[3]─Containers──────────────────────────
+│                                                                    ││                       

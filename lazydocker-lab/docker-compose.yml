@@ -1,0 +1,7 @@
+services:
+  hello-web:
+    image: example/hello-web:1.4
+    ports:
+      - "8080:80"
+  scratch-db:
+    image: example/scratch-db:16

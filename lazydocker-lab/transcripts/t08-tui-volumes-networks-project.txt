@@ -1,0 +1,43 @@
+Selecting the backup-store volume shows its config in the main panel:
+
+╭─[3]─Containers──────────────────────────────╮╭─Config─�
+│running     cache-box      25.00%            ││Name:          backup-store                                                   
+│running     hello-web      25.00% 8080->80/tc││Driver:        local                                                          
+│running     scratch-db     25.00%            ││Scope:         local                                                          
+│exited  (0) nightly-backup 25.00%            ││Mountpoint:    /var/lib/docker/volumes/backup-store/_data                     
+│                                             ││Labels:        none                                                           
+│                                             ││                                                                              
+│                                             ││Options:       none                                                           
+│                                             ││                                                                              
+│                                             ││Status:        n/aRefCount:      0                                            
+╰───────────────────────────────────────────
+╭─[4]─Images──────────────────────────────────╮│      
+│example/backup-tool 2.0    58.00MB           ││                                                                              
+│example/cache       7      31.00MB           ││                                                                              
+
+Selecting the bridge network shows its config:
+
+╭─[3]─Containers──────────────────────────────╮╭─Config─�
+│running     cache-box      25.00%            ││ID:            netbridge                                                      
+│running     hello-web      25.00% 8080->80/tc││Name:          bridge                                                         
+│running     scratch-db     25.00%            ││Driver:        bridge                                                         
+│exited  (0) nightly-backup 25.00%            ││Scope:         local                                                          
+│                                             ││EnabledIPV6:   false                                                          
+│                                             ││Internal:      false                                                          
+│                                             ││Attachable:    false                                                          
+│                                             ││Ingress:       false                                                          
+│                                             ││Containers:    none                                                           
+╰───────────────────────────────────────────
+╭─[4]─Images──────────────────────────────────╮│Labels
+│example/backup-tool 2.0    58.00MB           ││                                                                              
+│example/cache       7      31.00MB           ││Options:       none                                                           
+
+The Project panel (key 1) answers too -- and reports, in the main panel,
+that it shells out to a compose program this machine does not have:
+
+╭─[3]─Containers──────────────────────────────╮╭─Logs - Dock
+│running     cache-box      25.00%            ││bash: line 1: docker-compose: command not found                               
+│running     hello-web      25.00% 8080->80/tc││                                                                              
+│running     scratch-db     25.00%            ││                                                                              
+│exited  (0) nightly-backup 25.00%            ││                                                                              
+│                                             ││                                                                              

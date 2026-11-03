@@ -1,0 +1,89 @@
+The x menu on a container (opened and closed with esc -- nothing chosen).
+These are the keys the official keybindings document lists for the
+Containers panel, and the menu the program itself draws:
+
+│                                             ││                                                                              
+│                                  ╭─Menu────────────────────────────�
+╰──────────────────────────────────│d     remove            
+╭─[4]─Images───────────────────────│e     hide/show stopped containers        
+│example/backup-tool 2.0    58.00MB│p     pause                                                          │                    
+│example/cache       7      31.00MB│s     stop                                                           │                    
+│example/hello-web   1.4    142.00M│r     restart                                                        │                    
+│example/scratch-db  16     388.00M│a     attach                                                         │                    
+│<none>              <none> 12.00MB│m     view logs                                                      │                    
+│                                  │E     exec shell                                                     │                    
+│                                  │c     run predefined custom command                                  │                    
+│                                  │b     view bulk commands                                             │                    
+│                                  │w     open in browser (first port is http)                           │                    
+╰──────────────────────────────────│enter focus main panel  
+╭─[5]─Volumes──────────────────────│[     previous tab                          
+│local backup-store                │]     next tab                                                       │                    
+│local db-data                     │/     filter list                                                    │                    
+│local web-content                 │                                                                     │                    
+
+The Stats tab for hello-web, fed by the stub stats stream. CPU reads
+25.00% and memory 0.51% -- the arithmetic of the fixture numbers
+(cpu delta 0.5s over a 2.0s system delta; 42 MB of an 8.3 GB limit):
+
+╭─[3]─Containers──────────────────────────────╮╭─Logs - Stat
+│running     cache-box      25.00%            ││                                                                              
+│running     hello-web      25.00% 8080->80/tc││                                                                              
+│running     scratch-db     25.00%            ││ 25.00 ┤                                                                    
+│exited  (0) nightly-backup 25.00%            ││ 25.00 ┤                                                                    
+│                                             ││ 25.00 ┤                                                                    
+│                                             ││ 25.00 ┤                                                                    
+│                                             ││ 25.00 ┤                                                                    
+│                                             ││ 25.00 ┤                                                                    
+│                                             ││ 25.00 ┤                                                                    
+╰───────────────────────────────────────────
+╭─[4]─Images──────────────────────────────────╮│ 25.00
+│example/backup-tool 2.0    58.00MB           ││ 25.00 ┤                                                                    
+│example/cache       7      31.00MB           ││ 25.00 ┼──────────────────────�
+│example/hello-web   1.4    142.00MB          ││          CPU (%): 25.00 (16s)                                                
+│example/scratch-db  16     388.00MB          ││                                                                              
+│<none>              <none> 12.00MB           ││ 0.51 ┤                                                                     
+│                                             ││ 0.51 ┤                                                                     
+│                                             ││ 0.51 ┤                                                                     
+│                                             ││ 0.51 ┤                                                                     
+│                                             ││ 0.51 ┤                                                                     
+╰───────────────────────────────────────────
+╭─[5]─Volumes─────────────────────────────────╮│ 0.51 �
+│local backup-store                           ││ 0.51 ┤                                                                     
+
+The Env tab (from the container inspect data):
+
+╭─[3]─Containers──────────────────────────────╮╭─Logs - Stat
+│running     cache-box      25.00%            ││PATH: /usr/local/bin:/usr/bin:/bin                                            
+│running     hello-web      25.00% 8080->80/tc││                                                                              
+│running     scratch-db     25.00%            ││                                                                              
+
+The Config tab (also from inspect, compose labels included):
+
+╭─[3]─Containers──────────────────────────────╮╭─Logs - Stat
+│running     cache-box      25.00%            ││ID:       a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2    
+│running     hello-web      25.00% 8080->80/tc││Name:     hello-web                                                           
+│running     scratch-db     25.00%            ││Image:    example/hello-web:1.4                                               
+│exited  (0) nightly-backup 25.00%            ││Command:  /start.sh                                                           
+│                                             ││Labels:                                                                       
+│                                             ││          com.docker.compose.config-hash: f00df00d                            
+│                                             ││          com.docker.compose.project: harbour                                 
+│                                             ││          com.docker.compose.service: hello-web                               
+│                                             ││                                                                              
+╰───────────────────────────────────────────
+╭─[4]─Images──────────────────────────────────╮│Ports:
+
+The Top tab (the processes endpoint):
+
+╭─[3]─Containers──────────────────────────────╮╭─Logs - Stat
+│running     cache-box      25.00%            ││UID  PID  TIME CMD                                                            
+│running     hello-web      25.00% 8080->80/tc││root 1234 2h   /start.sh                                                      
+│running     scratch-db     25.00%            ││                                                                              
+
+The b key opens the Bulk Command popup (closed with esc, nothing run):
+
+│<none>              <none> 12.00MB           ││                                                                              
+│                                             ││                                                                              
+│                                             ││                                                                              
+│                                  ╭─Bulk Command:─────────────────────────�
+│                                  │stop all containers                                                  │                    
+╰──────────────────────────────────│remove all containers (f

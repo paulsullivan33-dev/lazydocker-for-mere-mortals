@@ -1,0 +1,22 @@
+$ curl -sLO https://github.com/jesseduffield/lazydocker/releases/download/v0.25.2/lazydocker_0.25.2_Linux_x86_64.tar.gz
+$ curl -sLO https://github.com/jesseduffield/lazydocker/releases/download/v0.25.2/checksums.txt
+$ sha256sum lazydocker_0.25.2_Linux_x86_64.tar.gz
+0d9dbfc26068b218e7ed84b104748cadc6e3cf733c0afd35465306fb39b9523c  lazydocker_0.25.2_Linux_x86_64.tar.gz
+$ sha256sum -c expected.txt   (the Linux_x86_64 line of the official checksums.txt)
+lazydocker_0.25.2_Linux_x86_64.tar.gz: OK
+
+$ tar xzf lazydocker_0.25.2_Linux_x86_64.tar.gz -C bin && ls -la bin/
+total 12584
+drwxrwx--- 1 root root       52 Nov  3 02:16 .
+drwxrwx--- 1 root root      198 Nov  3 02:17 ..
+-rw-r--r-- 1 1001 1001     1071 Apr 19  2026 LICENSE
+-rw-r--r-- 1 1001 1001    22856 Apr 19  2026 README.md
+-rwxr-xr-x 1 1001 1001 12853432 Apr 19  2026 lazydocker
+
+$ ./bin/lazydocker --version
+Version: 0.25.2
+Date: 2026-04-19T02:51:21Z
+BuildSource: binaryRelease
+Commit: 7e7aadc2071d58031bf2daafca1fbd4093efc23f
+OS: linux
+Arch: amd64

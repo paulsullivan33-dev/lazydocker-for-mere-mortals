@@ -1,0 +1,22 @@
+What lazydocker actually asked the stub during the tab session
+(transcript t09), counted from the stub request log. The four long
+runs are the per-container inspect polls of its refresh loop:
+
+    19 GET /v1.47/containers/<id>/json        (x4 containers, refresh loop)
+     4 GET /v1.47/containers/<hello-web>/top
+     3 GET /v1.47/containers/json?all=1
+     1 GET /v1.47/containers/<id>/stats?stream=1   (x3 running containers)
+     1 GET /v1.47/containers/<id>/logs?follow=1&stderr=1&stdout=1  (per selection)
+     1 GET /v1.47/images/json
+     1 GET /v1.47/images/<id>/history
+     1 GET /v1.47/volumes
+     1 GET /v1.47/networks
+     1 GET /v1.47/events
+     1 GET /v1.47/version
+     2 HEAD /_ping  +  1 GET /_ping
+
+And across ALL stub sessions (panels, menus, tabs, bulk popup opened
+and closed):
+
+$ grep -cE "^(POST|DELETE|PUT)" stub-requests.log
+0        (not one write request: looking is read-only)

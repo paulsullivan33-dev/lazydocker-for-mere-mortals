@@ -1,0 +1,12 @@
+$ ./bin/lazydocker --help
+lazydocker - The lazier way to manage everything docker
+https://github.com/jesseduffield/lazydocker
+
+  Flags: 
+       --version   Displays the program version string.
+    -h --help      Displays help with available flag, subcommand, and positional value parameters.
+    -c --config    Print the current default config
+    -d --debug     a boolean
+    -f --file      Specify alternate compose files
+    -p --project   Specify a docker compose project name
+
